@@ -1,0 +1,19 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/unicorns_db
+    username: root
+    password: Passw0rd
+    initialization-mode: never
+  jpa:
+    properties.hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate.ddl-adockeuto: none
+    hibernate:
+      ddl-auto: none
+
+logging:
+  level:
+    com.xxx: debug

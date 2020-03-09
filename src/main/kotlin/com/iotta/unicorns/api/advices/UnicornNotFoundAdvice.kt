@@ -47,3 +47,13 @@ class UnicornNotRentedStateAdvice {
     fun illegalStateHandler(ex: UnicornException.UnicornNotRented): Map<String, String> =
             mapOf("message" to (ex.message ?: "Unicorn is not rented, shouldn't be returned"))
 }
+
+@ControllerAdvice
+class UnicornGeneralExceptionStateAdvice {
+
+    @ResponseBody
+    @ExceptionHandler(UnicornException.UnicornGeneralException::class)
+    @ResponseStatus(HttpStatus.SERVICE_UNAVAILABLE)
+    fun illegalStateHandler(ex: UnicornException.UnicornGeneralException): Map<String, String> =
+            mapOf("message" to (ex.message ?: "Something bad happened to our unicorn stalls :("))
+}

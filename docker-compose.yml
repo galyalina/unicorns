@@ -1,0 +1,74 @@
+#
+# This compose files specifies the set of applications and micro-services to form full unicorns solution
+# This compose is used for all-in-one unicorn deployments and for integration tests
+# For integration tests please mark out the service under test so it can be run and debug from the development environment
+#
+version: '3.7'
+services:
+
+# ------------------------------
+# Database (Postgres) - 5432
+#  - Set variables POSTGRES_DB, POSTGRES_USER, POSTGRES_PASSWORD to start database with initial schema and user
+#  - Set variable PGDATA to point to the volume where to store database files
+# ------------------------------
+  database:
+    image: postgres:11-alpine
+    container_name: iotta-database
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=Passw0rd
+      - POSTGRES_DB=unicorns_db
+    restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+        max-file: "10"
+
+# ------------------------------
+# PgAdmin (PgAdmin)
+# ------------------------------
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@localhost
+      PGADMIN_DEFAULT_PASSWORD: admin
+    # volumes:
+    #    - pgadmin:/root/.pgadmin
+    ports:
+      - "5050:80"
+    restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+        max-file: "10"
+
+# your REST server definitions will go here
+# ------------------------------
+#  iotta-server:
+#    image: iotta/unicorns-rest-service
+#    container_name: unicorns-rest
+#    volumes:
+#      - ~/unicorns:/unicorns
+#    # devices:
+#    #   - /dev/dri:/dev/dri
+#    environment:
+#      - HOST_ADDRESS=127.0.0.1:8070
+#      - ACCESS_KEY={some access key}
+#    restart: unless-stopped
+#    logging:
+#      driver: "json-file"
+#      options:
+#        max-size: "50m"
+#        max-file: "10"
+
+# Docker volumes to persist files, these volumnes are mounted to the containers listed above
+volumes:
+  pg-data:
+
