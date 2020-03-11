@@ -4,10 +4,10 @@ server:
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/unicorns_db
+    url: jdbc:postgresql://${DB_HOST}/unicorns_db
     username: root
     password: Passw0rd
-    initialization-mode: never
+    initialization-mode: always
   jpa:
     properties.hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
     hibernate.ddl-adockeuto: none

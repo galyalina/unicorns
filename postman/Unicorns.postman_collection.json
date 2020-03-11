@@ -1,0 +1,58 @@
+{
+	"info": {
+		"_postman_id": "f1cc2987-fc50-415d-a0e0-8c8bb63ffefe",
+		"name": "Unicorns",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get not rented unicorns",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{galya_host}}/unicorns/rentals?name=Pinky Pie",
+					"host": [
+						"{{galya_host}}"
+					],
+					"path": [
+						"unicorns",
+						"rentals"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Pinky Pie"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Return rented unicorns",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "{{galya_host}}/unicorns/rentals?name=Pinky Pie",
+					"host": [
+						"{{galya_host}}"
+					],
+					"path": [
+						"unicorns",
+						"rentals"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Pinky Pie"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
